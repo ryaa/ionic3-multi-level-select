@@ -1,0 +1,55 @@
+{
+    "name": "ionic3-multi-level-select",
+    "version": "0.0.1",
+    "description": "Ionic multi level select module allowing to display hierarchical data in a mobile friendly manner.",
+    "main": "./dist/index.js",
+    "typings": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "ngc": "ngc",
+        "build": "rm -rf dist && npm run ngc",
+        "publishPackage": "npm run build && npm publish"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ryaa/ionic3-multi-level-select.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ryaa/ionic3-multi-level-select/issues"
+    },
+    "keywords": [
+        "ionic",
+        "multi level select",
+        "hierachy"
+    ],
+    "author": "Alex Ryltsov",
+    "license": "MIT",
+    "homepage": "https://github.com/ryaa/ionic3-multi-level-select",
+    "devDependencies": {
+        "@angular/common": "5.0.0",
+        "@angular/compiler": "5.0.0",
+        "@angular/compiler-cli": "5.0.0",
+        "@angular/core": "5.0.0",
+        "@angular/forms": "5.0.0",
+        "@angular/platform-browser": "5.0.0",
+        "@angular/platform-browser-dynamic": "5.0.0",
+        "@types/jasmine": "2.5.47",
+        "ionic-angular": "3.9.2",
+        "jasmine-core": "2.6.1",
+        "jasmine-spec-reporter": "4.1.0",
+        "karma": "1.7.0",
+        "karma-chrome-launcher": "2.1.1",
+        "karma-coverage": "1.1.1",
+        "karma-jasmine": "1.1.0",
+        "karma-jasmine-jquery": "0.1.1",
+        "karma-mocha-reporter": "2.2.3",
+        "karma-remap-coverage": "0.1.4",
+        "karma-sourcemap-loader": "0.3.7",
+        "karma-webpack": "2.0.3",
+        "rxjs": "5.5.2",
+        "typescript": "2.4.2",
+        "zone.js": "0.8.18"
+    }
+}

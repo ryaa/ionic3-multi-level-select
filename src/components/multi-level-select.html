@@ -1,0 +1,11 @@
+<ion-toolbar (click)="open()">
+  <ion-title>{{ selectedItem ? selectedItem?.name : "Please Select" }}</ion-title>
+  <ion-buttons right>
+    <button *ngIf="selectedItem" ion-button icon-only (click)="reset($event)">
+      <i class="fa fa-times" aria-hidden="true"></i>
+    </button>
+    <button ion-button icon-only>
+      <i class="fa fa-caret-down" aria-hidden="true"></i>
+    </button>
+  </ion-buttons>
+</ion-toolbar>

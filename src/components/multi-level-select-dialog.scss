@@ -1,0 +1,77 @@
+ryaa-multi-level-select-dialog {
+  ion-content {
+    ion-slides {
+      .slide-zoom {
+        height: 100%;
+        ion-list-header {
+          margin-bottom: 1px;
+          padding-left: 0;
+          font-family: $roboto;
+          background-color: $primary-color !important;
+          border-color: $primary-color !important;
+          ion-label {
+            margin: 0 !important;
+            ion-toolbar {
+              .toolbar-background {
+                background-color: $primary-color !important;
+              }
+              ion-buttons {
+                button {
+                  color: $light-color;
+                }
+              }
+              ion-title {
+                .toolbar-title {
+                  font-size: 18px;
+                  color: $light-color;
+                }
+              }
+            }
+          }
+        }
+        ion-list {
+          height: calc(100% - 59px);
+          overflow-y: scroll;
+          ion-item {
+            ion-label {
+              margin-top: 10px;
+              margin-bottom: 10px;
+            }
+            ion-icon {
+              font-size: 20px;
+              line-height: 30px;
+            }
+            &.selected {
+              background-color: #eee !important;
+            }
+            &.parent-item {
+              padding-left: 0px;
+              .item-inner {
+                padding-left: 16px;
+                border-bottom: 1px solid #dedede !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// iPhone X / 8 / 8 Plus CSS media queries - see https://stackoverflow.com/questions/46313640/iphone-x-8-8-plus-css-media-queries
+// iPhone X
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  bsc-multi-level-select-dialog {
+    ion-content {
+      ion-slides {
+        ion-slide {
+          ion-list-header {
+            &.list-header-ios {
+              padding-top: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

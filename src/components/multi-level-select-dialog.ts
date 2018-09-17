@@ -1,5 +1,3 @@
-// Unit tests are updated 11-May-2018 for the next build 1.0.10 (COMPLETE AND UP-TO-DATE)
-
 import { Component, ViewChild } from '@angular/core';
 import { NavParams, Slides, ViewController } from 'ionic-angular';
 
@@ -7,9 +5,7 @@ import { NavParams, Slides, ViewController } from 'ionic-angular';
 import { NamedIdentity, LookUpItem, Slide, SlideItem } from '../models/models';
 
 // PROVIDERS
-// import { AppEvents } from '../../../core/providers/app-events/app-events';
 import { Loading } from '../providers/loading/loading';
-// import { Logger } from '../../../core/providers/logger/logger';
 
 @Component({
   selector: 'ryaa-multi-level-select-dialog',
@@ -25,15 +21,14 @@ export class MultiLevelSelectDialogComponent {
 
   @ViewChild(Slides) public slidesControl: Slides;
 
-  constructor(/* private appEvents: AppEvents, */ private loading: Loading, /* private logger: Logger, */ private params: NavParams, private viewCtrl: ViewController) {
+  constructor(private loading: Loading, private params: NavParams, private viewCtrl: ViewController) {
     this.slides = null;
     this.selectedItemId = null;
     this.lookups = null;
     this.allowParent = null;
   }
-  // Runs when the page has loaded. This event only happens once per page being created. If a page leaves but is cached, then this event will not fire again on a subsequent viewing.
   public ionViewDidLoad() {
-    // Need to show a progress UI since it might take 1-2 secs to init the dialog if the lookups contains many items (see https://bossgit.atlassian.net/browse/BD-2221)
+    // Need to show a progress UI since it might take 1-2 secs to init the dialog if the lookups contains many items
     this.loading.present();
   }
 
@@ -47,7 +42,8 @@ export class MultiLevelSelectDialogComponent {
     if (lookups) {
       this.lookups = lookups;
     } else {
-      // this.appEvents.notifyGeneralError('Internal error: lookups is empty.');
+      console.error('Internal error: lookups is empty.');
+      this.lookups = [];
     }
 
     const allowParent = this.params.get('allowParent');
@@ -193,7 +189,7 @@ export class MultiLevelSelectDialogComponent {
             this.addChildren(item.slide, item, item.lookUpItem.children);
             nextSlideIndex = item.nextSlideIndex;
           } else {
-            // this.logger.error('MultiLevelSelectDialogComponent: itemOrIndex.nextSlideIndex must not be null', itemOrIndex);
+            console.error('MultiLevelSelectDialogComponent: itemOrIndex.nextSlideIndex must not be null', itemOrIndex);
             return;
           }
         }
@@ -206,7 +202,7 @@ export class MultiLevelSelectDialogComponent {
         this.slidesControl.lockSwipes(true);
       }, 500);
     } else {
-      // this.logger.error('MultiLevelSelectDialogComponent: itemOrIndex must not be null', itemOrIndex);
+      console.error('MultiLevelSelectDialogComponent: itemOrIndex must not be null', itemOrIndex);
     }
   }
 

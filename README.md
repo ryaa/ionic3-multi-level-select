@@ -1,7 +1,7 @@
-# ionic3-multi-level-select
+# Ionic3 Multi Level Select
 
 ## Description
-This is an ionic multi level select component allowing to display hierarchical data in a mobile friendly manner. The component shows only one level at a time and navigates to a child level when the appropriate node selected.
+Ionic multi level select components allows displaying hierarchical data in a mobile friendly manner. The component shows only one level at a time and navigates to a child level when the appropriate node selected.
 
 ## Getting Started
 Install using npm
@@ -37,9 +37,9 @@ import { IonicMultiLevelSelectModule } from 'ionic3-multi-level-select';
 export class AppModule {}
 ```
 
-You may also need to import the `MultiLevelSelectHelpers` in the `app.module.ts` and the page that requires the helper to prepare the data to be consumed by the multi-level-select component (see below):
+You may also need to import/add the `MultiLevelSelectHelpers` in the `app.module.ts` and the page that requires the helper to transform and prepare the data to be consumed by the multi level select component (see below):
 
-Add the component to the page that requires the multi-level-select component:
+Add the component to the page that requires the multi-level-select component
 ```html
 <ion-item>
     <ion-label>Control Label</ion-label>
@@ -48,6 +48,10 @@ Add the component to the page that requires the multi-level-select component:
     </div>
 </ion-item>
 ```
+and 
+1) (assuming you use reactive form) set the control value as { id: <NUMBER>, name: <NAME> } (this must be one of the values from the lookups)
+2) lookups having hierarchical data (see below)
+The component will display the currently selected value and allows to clear it or select a new value. When clicked it will open a modal dialog showing the hierarchical data (with selected value if applicable).
 
 ## Multi Level Select Options
 
@@ -128,7 +132,8 @@ The hierarchical data in the format below
 ```
 
 The module also contains `MultiLevelSelectHelpers` provider which helps to transform flat data to hierarchical to be consumed by the multi level select component. This provider has methods:
-#### buildHierarchicalLookUp
+
+- buildHierarchicalLookUp   
 This method can transform the flat data in the format below to the hierarchical data to be consumed by the component (note that parent_id property has underscore!)
 ```
 [
@@ -170,8 +175,9 @@ This method can transform the flat data in the format below to the hierarchical 
 ]
 ```
 
-#### sortHierarchicalLookUpAsTreeInAscOrder
-This method sorts the hierarchical data by property id or name 
+- sortHierarchicalLookUpAsTreeInAscOrder
+This method sorts the hierarchical data by property id or name
+
 ### allowParent
 This property determines whether the user can select only the lowest level node/item or can select any node/item in the hierarchy.
 

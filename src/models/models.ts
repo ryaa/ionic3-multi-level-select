@@ -15,14 +15,7 @@ export enum SortOrder {
 }
 
 export interface LookUpItemRaw extends NamedIdentity, Identity {
-    parentId?: number;
-    color?: string;
-    icon?: string;
-    longitude?: number;
-    latitude?: number;
-    shortcut?: string;
-    level?: number;
-    teams?: NamedIdentity[];
+    parent_id?: number;
 }
 
 export interface LookUpItem extends NamedIdentity {

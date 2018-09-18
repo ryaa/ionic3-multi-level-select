@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { LookUpItem, LookUpItemRaw, SortOrder } from '../../models/models';
 
 @Injectable()
-export class Helpers {
+export class MultiLevelSelectHelpers {
 
     public buildHierarchicalLookUp(lookups: LookUpItemRaw[]): LookUpItem[] {
         if (lookups && lookups.length > 0) {
@@ -12,8 +12,8 @@ export class Helpers {
             const _lookupsTree: LookUpItem[] = [];
             const addChildren = (parent: LookUpItem) => {
                 lookups.forEach((value: LookUpItemRaw) => {
-                    if (value.parentId === parent.id) {
-                        const _child: LookUpItem = { id: value.id, parentId: value.parentId, name: value.name, children: [] };
+                    if (value.parent_id === parent.id) {
+                        const _child: LookUpItem = { id: value.id, parentId: value.parent_id, name: value.name, children: [] };
                         parent.children.push(_child);
                         addChildren(_child);
                     }
@@ -21,7 +21,7 @@ export class Helpers {
             };
 
             lookups.forEach((value: LookUpItemRaw) => {
-                if (value.parentId == null) {
+                if (value.parent_id == null) {
                     const _topParent: LookUpItem = { id: value.id, parentId: null, name: value.name, children: [] };
                     _lookupsTree.push(_topParent);
                     addChildren(_topParent);

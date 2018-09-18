@@ -1,4 +1,4 @@
-// Unit tests are updated 26-July-2018 for the next build 1.0.10 (COMPLETE AND UP-TO-DATE)
+import { } from 'jasmine';
 
 import { TestBed, inject } from '@angular/core/testing';
 
@@ -6,21 +6,21 @@ import { TestBed, inject } from '@angular/core/testing';
 import { LookUpItem, LookUpItemRaw, SortOrder } from '../../models/models';
 
 // PROVIDERS
-import { Helpers } from './helpers';
+import { MultiLevelSelectHelpers } from './helpers';
 
-describe('Helpers Provider:', () => {
+describe('MultiLevelSelectHelpers Provider:', () => {
 
-    let helpers: Helpers;
+    let helpers: MultiLevelSelectHelpers;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [
-                Helpers
+                MultiLevelSelectHelpers
             ]
         });
     });
 
-    beforeEach(inject([Helpers], (_helpers: Helpers) => {
+    beforeEach(inject([MultiLevelSelectHelpers], (_helpers: MultiLevelSelectHelpers) => {
         helpers = _helpers;
     }));
 
@@ -34,41 +34,41 @@ describe('Helpers Provider:', () => {
 
         describe('buildHierarchicalLookUp', () => {
             it('should return correct data structure', () => {
-                const lookups = [
+                const lookups: LookUpItemRaw[] = [
                     {
                         id: 11,
                         name: 'name 11',
-                        parentId: 1,
+                        parent_id: 1,
                     },
                     {
                         id: 12,
                         name: 'name 12',
-                        parentId: 1,
+                        parent_id: 1,
                     },
                     {
                         id: 13,
                         name: 'name 13',
-                        parentId: 1,
+                        parent_id: 1,
                     },
                     {
                         id: 1,
                         name: 'name 1',
-                        parentId: null,
+                        parent_id: null,
                     },
                     {
                         id: 2,
                         name: 'name 2',
-                        parentId: null,
+                        parent_id: null,
                     },
                     {
                         id: 121,
                         name: 'name 121',
-                        parentId: 12,
+                        parent_id: 12,
                     },
                     {
                         id: 122,
                         name: 'name 122',
-                        parentId: 12,
+                        parent_id: 12,
                     }
                 ];
 

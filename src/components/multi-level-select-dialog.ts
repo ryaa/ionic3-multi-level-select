@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NavParams, Slides, ViewController } from 'ionic-angular';
 
 // MODELS
@@ -9,7 +9,97 @@ import { Loading } from '../providers/loading/loading';
 
 @Component({
   selector: 'ryaa-multi-level-select-dialog',
-  templateUrl: 'multi-level-select-dialog.html'
+  template: `
+    <ion-content>
+      <ion-slides [pager]="false">
+        <ion-slide *ngFor="let slide of slides">
+          <ion-list-header>
+
+              <ion-toolbar>
+                <ion-buttons left>
+                  <button ion-button icon-only *ngIf="slide.parentSlide" (click)="slideTo(slide.parentSlide?.slideIndex)">
+                    <ion-icon name="arrow-back"></ion-icon>
+                  </button>
+                </ion-buttons>
+                <ion-title>{{ slide.parentSlideItem ? slide.parentSlideItem?.name : "Please Select" }}</ion-title>
+                <ion-buttons right>
+                  <button ion-button icon-only (click)="close()">
+                    <ion-icon name="close"></ion-icon>
+                  </button>
+                </ion-buttons>
+              </ion-toolbar>
+
+          </ion-list-header>
+
+          <ion-list no-lines>
+
+            <ion-item class="parent-item" *ngIf="slide.parentSlide && allowParent" (click)="itemSelected(slide.parentSlideItem)">
+              {{ slide.parentSlideItem?.name }}
+            </ion-item>
+
+            <ion-item [ngClass]="{ 'selected': item.selected }" *ngFor="let item of slide.items" (click)="handleItemClick(item)">
+              {{ item.name }}
+              <ion-icon *ngIf="item.nextSlideIndex !== null" item-right name="arrow-forward"></ion-icon>
+            </ion-item>
+
+          </ion-list>
+        </ion-slide>
+      </ion-slides>
+    </ion-content>
+  `,
+  styles: [`
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom {
+      height: 100%;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list-header {
+      margin-bottom: 1px;
+      padding-left: 0;
+      font-family: "Roboto", sans-serif;
+      background-color: #25A0DA;
+      border-color: #25A0DA;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list-header ion-label {
+      margin: 0;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list-header ion-label ion-toolbar .toolbar-background {
+      background-color: #25A0DA;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list-header ion-label ion-toolbar ion-buttons button {
+      color: #ffffff;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list-header ion-label ion-toolbar ion-title .toolbar-title {
+      font-size: 18px;
+      color: #ffffff;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list {
+      height: calc(100% - 59px);
+      overflow-y: scroll;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list ion-item ion-label {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list ion-item ion-icon {
+      font-size: 20px;
+      line-height: 30px;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list ion-item.selected {
+      background-color: #eee;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list ion-item.parent-item {
+      padding-left: 0px;
+    }
+    ryaa-multi-level-select-dialog ion-content ion-slides .slide-zoom ion-list ion-item.parent-item .item-inner {
+      padding-left: 16px;
+      border-bottom: 1px solid #dedede;
+    }`,
+    `@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+      ryaa-multi-level-select-dialog ion-content ion-slides ion-slide ion-list-header.list-header-ios {
+        padding-top: 25px;
+      }
+    }`
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class MultiLevelSelectDialogComponent {
 

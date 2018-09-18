@@ -3,6 +3,9 @@
 ## Description
 Ionic multi level select components allows displaying hierarchical data in a mobile friendly manner. The component shows only one level at a time and navigates to a child level when the appropriate node selected.
 
+## Preview
+![preview](https://user-images.githubusercontent.com/3608222/45682050-e2fb6b00-bb47-11e8-9679-fb531ad3e431.gif)
+
 ## Getting Started
 Install using npm
 

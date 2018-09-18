@@ -37,7 +37,7 @@ import { IonicMultiLevelSelectModule } from 'ionic3-multi-level-select';
 export class AppModule {}
 ```
 
-You may also need to import/add the `MultiLevelSelectHelpers` in the `app.module.ts` and the page that requires the helper to transform and prepare the data to be consumed by the multi level select component (see below):
+You may also need to import/add the `MultiLevelSelectHelpers` in the `app.module.ts` and the page that requires the helper to transform and prepare the data to be consumed by the multi level select component (see below lookups option).
 
 Add the component to the page that requires the multi-level-select component
 ```html
@@ -49,7 +49,7 @@ Add the component to the page that requires the multi-level-select component
 </ion-item>
 ```
 and 
-1) (assuming you use reactive form) set the control value as { id: <NUMBER>, name: <NAME> } (this must be one of the values from the lookups)
+1) (assuming you use reactive form) set the control value as `{ id: <NUMBER>, name: <NAME> }` (this must be one of the values from the lookups)
 2) lookups having hierarchical data (see below)
 The component will display the currently selected value and allows to clear it or select a new value. When clicked it will open a modal dialog showing the hierarchical data (with selected value if applicable).
 

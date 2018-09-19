@@ -1,5 +1,3 @@
-// Unit tests are updated 01-23-2018 for the next build 1.0.6 (COMPLETE AND UP-TO-DATE)
-
 import { Component, Input, forwardRef , ViewEncapsulation } from '@angular/core';
 import { ModalController, NavParams } from 'ionic-angular';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';

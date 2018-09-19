@@ -81,12 +81,5 @@ export class MultiLevelSelectHelpers {
             }
         });
     }
-    /* public buildHierarchicalLookUpForCascadingDropdownListCustomFieldType(filteredCustomFields: CustomFieldLookUp[]): void {
-        filteredCustomFields.forEach((customField) => {
-            if (customField.type === CustomFieldTypes.CascadingDropdownList) {
-                customField.optionsAsTree = this.buildHierarchicalLookUp(customField.options);
-            }
-        });
-    } */
 
 }

@@ -27,7 +27,7 @@ import { IonicMultiLevelSelectModule } from 'ionic3-multi-level-select';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    IonicMultiLevelSelectModule
+    IonicMultiLevelSelectModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

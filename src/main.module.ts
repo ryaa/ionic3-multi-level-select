@@ -1,4 +1,5 @@
-import { CUSTOM_ELEMENTS_SCHEMA, Optional, NgModule, ModuleWithProviders, SkipSelf } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { IonicModule } from 'ionic-angular';
 
 import { MultiLevelSelectComponent } from './components/multi-level-select';
@@ -8,11 +9,10 @@ import { Loading } from './providers/loading/loading';
 
 @NgModule({
     imports: [
+        CommonModule,
         IonicModule
     ],
     entryComponents: [
-        MultiLevelSelectComponent,
-        MultiLevelSelectDialogComponent
     ],
     declarations: [
         MultiLevelSelectComponent,
@@ -29,22 +29,4 @@ import { Loading } from './providers/loading/loading';
         Loading
     ]
 })
-export class IonicMultiLevelSelectModule {
-
-    public static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: IonicMultiLevelSelectModule,
-            providers: [
-                MultiLevelSelectHelpers
-            ]
-        };
-    }
-
-    constructor( @Optional() @SkipSelf() parentModule: IonicMultiLevelSelectModule) {
-        if (parentModule) {
-            throw new Error(
-                'IonicMultiLevelSelectModule is already loaded. Import it in the AppModule only');
-        }
-    }
-
-}
+export class IonicMultiLevelSelectModule { }

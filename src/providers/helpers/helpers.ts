@@ -46,8 +46,7 @@ export class MultiLevelSelectHelpers {
             sortByPropertyName = 'name';
             valueBeingSortedStrings = true;
         } else {
-            console.error(`Helpers provider: not supported sortBy param is provided. sortBy: ${JSON.stringify(sortBy)}`);
-            return;
+            throw new Error(`Helpers provider: not supported sortBy param is provided. sortBy: ${JSON.stringify(sortBy)}`);
         }
         const sortByFn = (a, b) => {
             const aValue = valueBeingSortedStrings ? a[sortByPropertyName].toLowerCase() : a[sortByPropertyName];

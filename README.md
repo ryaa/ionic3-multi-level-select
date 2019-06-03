@@ -6,6 +6,9 @@ Ionic multi level select components allows displaying hierarchical data in a mob
 ## Preview
 ![preview](https://user-images.githubusercontent.com/3608222/45682050-e2fb6b00-bb47-11e8-9679-fb531ad3e431.gif)
 
+## Demo
+Please see [demo project](https://github.com/ryaa/ionic3-multi-level-select-demo)  
+
 ## Getting Started
 Install using npm
 
@@ -27,7 +30,7 @@ import { IonicMultiLevelSelectModule } from 'ionic3-multi-level-select';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    IonicMultiLevelSelectModule.forRoot()
+    IonicMultiLevelSelectModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

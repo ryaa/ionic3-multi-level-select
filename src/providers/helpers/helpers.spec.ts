@@ -363,81 +363,87 @@ describe('MultiLevelSelectHelpers Provider:', () => {
                 beforeEach(() => {
                     sortOrder = -1;
                 });
+                it('should throw the right error', () => {
+                    expect(() => {
+                        helpers.sortHierarchicalLookUpAsTreeInAscOrder(hierarchicalLookUpAsTree, sortOrder);
+                    }).toThrowError(`Helpers provider: not supported sortBy param is provided. sortBy: ${JSON.stringify(sortOrder)}`);
+                });
                 it('should NOT sort hierarchicalLookUpAsTree', () => {
-                    helpers.sortHierarchicalLookUpAsTreeInAscOrder(hierarchicalLookUpAsTree, sortOrder);
-
-                    const expectedHierarchicalLookUpAsTreeAfterSorting = [
-                        {
-                            id: 5,
-                            parentId: null,
-                            name: 'Support',
-                            children: [
-                                {
-                                    id: 10,
-                                    parentId: 5,
-                                    name: 'BB',
-                                    children: []
-                                },
-                                {
-                                    id: 9,
-                                    parentId: 5,
-                                    name: 'CC',
-                                    children: []
-                                },
-                                {
-                                    id: 11,
-                                    parentId: 5,
-                                    name: 'AA',
-                                    children: []
-                                }
-                            ]
-                        },
-                        {
-                            id: 6,
-                            parentId: null,
-                            name: 'ATest',
-                            children: [
-                                {
-                                    id: 8,
-                                    parentId: 6,
-                                    name: 'AA',
-                                    children: []
-                                },
-                                {
-                                    id: 7,
-                                    parentId: 6,
-                                    name: 'BB',
-                                    children: []
-                                },
-
-                            ]
-                        },
-                        {
-                            id: 2,
-                            parentId: null,
-                            name: 'HR',
-                            children: []
-                        },
-                        {
-                            id: 3,
-                            parentId: null,
-                            name: 'Network',
-                            children: []
-                        },
-                        {
-                            id: 1,
-                            parentId: null,
-                            name: 'Hardware',
-                            children: []
-                        },
-                        {
-                            id: 4,
-                            parentId: null,
-                            name: 'Software',
-                            children: []
-                        }
-                    ];
-                    expect(hierarchicalLookUpAsTree).toEqual(expectedHierarchicalLookUpAsTreeAfterSorting);
+                    try {
+                        helpers.sortHierarchicalLookUpAsTreeInAscOrder(hierarchicalLookUpAsTree, sortOrder);
+                    } catch (error) {
+                        const expectedHierarchicalLookUpAsTreeAfterSorting = [
+                            {
+                                id: 5,
+                                parentId: null,
+                                name: 'Support',
+                                children: [
+                                    {
+                                        id: 10,
+                                        parentId: 5,
+                                        name: 'BB',
+                                        children: []
+                                    },
+                                    {
+                                        id: 9,
+                                        parentId: 5,
+                                        name: 'CC',
+                                        children: []
+                                    },
+                                    {
+                                        id: 11,
+                                        parentId: 5,
+                                        name: 'AA',
+                                        children: []
+                                    }
+                                ]
+                            },
+                            {
+                                id: 6,
+                                parentId: null,
+                                name: 'ATest',
+                                children: [
+                                    {
+                                        id: 8,
+                                        parentId: 6,
+                                        name: 'AA',
+                                        children: []
+                                    },
+                                    {
+                                        id: 7,
+                                        parentId: 6,
+                                        name: 'BB',
+                                        children: []
+                                    }
+                                ]
+                            },
+                            {
+                                id: 2,
+                                parentId: null,
+                                name: 'HR',
+                                children: []
+                            },
+                            {
+                                id: 3,
+                                parentId: null,
+                                name: 'Network',
+                                children: []
+                            },
+                            {
+                                id: 1,
+                                parentId: null,
+                                name: 'Hardware',
+                                children: []
+                            },
+                            {
+                                id: 4,
+                                parentId: null,
+                                name: 'Software',
+                                children: []
+                            }
+                        ];
+                        expect(hierarchicalLookUpAsTree).toEqual(expectedHierarchicalLookUpAsTreeAfterSorting);
+                    }
                 });
             });
         });

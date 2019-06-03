@@ -139,10 +139,34 @@ describe('MultiLevelSelectDialogComponent:', () => {
                         return undefined;
                     });
                 });
-                it('should set lookups to empty array', () => {
-                    comp.ionViewDidEnter();
-
-                    expect(comp.lookups).toEqual([]);
+                it('should throw the right error', () => {
+                    expect(() => {
+                        comp.ionViewDidEnter();
+                    }).toThrowError(`MultiLevelSelectDialogComponent: lookups is missing; lookups: ${JSON.stringify(undefined)}`);
+                });
+                it('should NOT invoke buildInitialSlide', () => {
+                    try {
+                        comp.ionViewDidEnter();
+                        tick();
+                    } catch (error) {
+                        expect(comp.buildInitialSlide).not.toHaveBeenCalled();
+                    }
+                });
+                it('should NOT invoke slidesControl.lockSwipes', () => {
+                    try {
+                        comp.ionViewDidEnter();
+                        tick();
+                    } catch (error) {
+                        expect(comp.slidesControl.lockSwipes).not.toHaveBeenCalled();
+                    }
+                });
+                it('should invoke loading.dismiss', () => {
+                    try {
+                        comp.ionViewDidEnter();
+                        tick();
+                    } catch (error) {
+                        expect(loadingMock.dismiss).toHaveBeenCalledTimes(1);
+                    }
                 });
             });
             describe('when params.get returns allowParent', () => {
@@ -1215,28 +1239,43 @@ describe('MultiLevelSelectDialogComponent:', () => {
                         });
                         it('should NOT invoke addChildren', (done) => {
                             fakeAsync(() => {
-                                comp.slideTo(itemOrIndexParam);
-                                tick(delay);
-
-                                expect(comp.addChildren).not.toHaveBeenCalled();
-                                done();
+                                try {
+                                    comp.slideTo(itemOrIndexParam);
+                                    tick(delay);
+                                } catch (error) {
+                                    expect(comp.addChildren).not.toHaveBeenCalled();
+                                    done();
+                                }
                             })();
                         });
                         it('should NOT invoke slidesControl.lockSwipes', (done) => {
                             fakeAsync(() => {
-                                comp.slideTo(itemOrIndexParam);
-                                tick(delay);
-
-                                expect(comp.slidesControl.lockSwipes).not.toHaveBeenCalled();
-                                done();
+                                try {
+                                    comp.slideTo(itemOrIndexParam);
+                                    tick(delay);
+                                } catch (error) {
+                                    expect(comp.slidesControl.lockSwipes).not.toHaveBeenCalled();
+                                    done();
+                                }
                             })();
                         });
                         it('should NOT invoke slidesControl.slideTo', (done) => {
                             fakeAsync(() => {
-                                comp.slideTo(itemOrIndexParam);
-                                tick(delay);
-
-                                expect(comp.slidesControl.slideTo).not.toHaveBeenCalled();
+                                try {
+                                    comp.slideTo(itemOrIndexParam);
+                                    tick(delay);
+                                } catch (error) {
+                                    expect(comp.slidesControl.slideTo).not.toHaveBeenCalled();
+                                    done();
+                                }
+                            })();
+                        });
+                        it('should throw the right error', (done) => {
+                            fakeAsync(() => {
+                                expect(() => {
+                                    comp.slideTo(itemOrIndexParam);
+                                    tick(delay);
+                                }).toThrowError(`MultiLevelSelectDialogComponent: itemOrIndex.nextSlideIndex must not be null; itemOrIndex: ${JSON.stringify(itemOrIndexParam)}`);
                                 done();
                             })();
                         });
@@ -1322,28 +1361,43 @@ describe('MultiLevelSelectDialogComponent:', () => {
                 });
                 it('should NOT invoke addChildren', (done) => {
                     fakeAsync(() => {
-                        comp.slideTo(itemOrIndexParam);
-                        tick(delay);
-
-                        expect(comp.addChildren).not.toHaveBeenCalled();
-                        done();
+                        try {
+                            comp.slideTo(itemOrIndexParam);
+                            tick(delay);
+                        } catch (error) {
+                            expect(comp.addChildren).not.toHaveBeenCalled();
+                            done();
+                        }
                     })();
                 });
                 it('should NOT invoke slidesControl.lockSwipes', (done) => {
                     fakeAsync(() => {
-                        comp.slideTo(itemOrIndexParam);
-                        tick(delay);
-
-                        expect(comp.slidesControl.lockSwipes).not.toHaveBeenCalled();
-                        done();
+                        try {
+                            comp.slideTo(itemOrIndexParam);
+                            tick(delay);
+                        } catch (error) {
+                            expect(comp.slidesControl.lockSwipes).not.toHaveBeenCalled();
+                            done();
+                        }
                     })();
                 });
                 it('should NOT invoke slidesControl.slideTo', (done) => {
                     fakeAsync(() => {
-                        comp.slideTo(itemOrIndexParam);
-                        tick(delay);
-
-                        expect(comp.slidesControl.slideTo).not.toHaveBeenCalled();
+                        try {
+                            comp.slideTo(itemOrIndexParam);
+                            tick(delay);
+                        } catch (error) {
+                            expect(comp.slidesControl.slideTo).not.toHaveBeenCalled();
+                            done();
+                        }
+                    })();
+                });
+                it('should throw the right error', (done) => {
+                    fakeAsync(() => {
+                        expect(() => {
+                            comp.slideTo(itemOrIndexParam);
+                            tick(delay);
+                        }).toThrowError(`MultiLevelSelectDialogComponent: itemOrIndex must not be null; itemOrIndex: ${JSON.stringify(itemOrIndexParam)}`);
                         done();
                     })();
                 });

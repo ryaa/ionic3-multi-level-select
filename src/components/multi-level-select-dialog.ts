@@ -132,8 +132,8 @@ export class MultiLevelSelectDialogComponent {
     if (lookups) {
       this.lookups = lookups;
     } else {
-      console.error('Internal error: lookups is empty.');
-      this.lookups = [];
+      this.loading.dismiss();
+      throw new Error(`MultiLevelSelectDialogComponent: lookups is missing; lookups: ${JSON.stringify(lookups)}`);
     }
 
     const allowParent = this.params.get('allowParent');
@@ -279,8 +279,7 @@ export class MultiLevelSelectDialogComponent {
             this.addChildren(item.slide, item, item.lookUpItem.children);
             nextSlideIndex = item.nextSlideIndex;
           } else {
-            console.error('MultiLevelSelectDialogComponent: itemOrIndex.nextSlideIndex must not be null', itemOrIndex);
-            return;
+            throw new Error(`MultiLevelSelectDialogComponent: itemOrIndex.nextSlideIndex must not be null; itemOrIndex: ${JSON.stringify(itemOrIndex)}`);
           }
         }
       } else {
@@ -292,7 +291,7 @@ export class MultiLevelSelectDialogComponent {
         this.slidesControl.lockSwipes(true);
       }, 500);
     } else {
-      console.error('MultiLevelSelectDialogComponent: itemOrIndex must not be null', itemOrIndex);
+      throw new Error(`MultiLevelSelectDialogComponent: itemOrIndex must not be null; itemOrIndex: ${JSON.stringify(itemOrIndex)}`);
     }
   }
 

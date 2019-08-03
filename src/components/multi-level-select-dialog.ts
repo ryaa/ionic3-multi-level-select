@@ -269,7 +269,7 @@ export class MultiLevelSelectDialogComponent {
   public slideTo(itemOrIndex: SlideItem | number): void {
     if (itemOrIndex != null) {
       let nextSlideIndex = null;
-      if ((itemOrIndex as SlideItem).id) {
+      if ((itemOrIndex as SlideItem).id != null) {
         if ((itemOrIndex as SlideItem).nextSlideIndex != null) {
           nextSlideIndex = (itemOrIndex as SlideItem).nextSlideIndex;
         } else {

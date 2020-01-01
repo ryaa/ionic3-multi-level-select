@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef , ViewEncapsulation } from '@angular/core';
+import { Component, Input, forwardRef, ViewEncapsulation } from '@angular/core';
 import { ModalController, NavParams } from 'ionic-angular';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -12,7 +12,7 @@ import { MultiLevelSelectDialogComponent } from './multi-level-select-dialog';
   selector: 'ryaa-multi-level-select',
   template: `
     <ion-toolbar (click)="open()">
-      <ion-title>{{ selectedItem ? selectedItem?.name : "Please Select" }}</ion-title>
+      <ion-title [ngClass]="{ 'multi-level-select-placeholder': !selectedItem }">{{ selectedItem ? selectedItem?.name : "Please Select" }}</ion-title>
       <ion-buttons right>
         <button *ngIf="selectedItem" ion-button icon-only (click)="reset($event)">
           <i class="fa fa-times" aria-hidden="true"></i>
@@ -34,6 +34,9 @@ import { MultiLevelSelectDialogComponent } from './multi-level-select-dialog';
     ryaa-multi-level-select ion-toolbar ion-title.title-ios {
       padding-left: 0px;
       padding-right: 0px;
+    }
+    ryaa-multi-level-select ion-toolbar ion-title.multi-level-select-placeholder {
+      opacity: .33;
     }
     ryaa-multi-level-select ion-toolbar ion-title .toolbar-title {
       font: 400 15px "Roboto", sans-serif;
